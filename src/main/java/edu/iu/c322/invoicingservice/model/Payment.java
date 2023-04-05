@@ -16,7 +16,7 @@ public class Payment {
     @NotEmpty(message = "Credit card number cannot be empty.")
     private String number;
     @Valid
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private BillingAddress billingAddress;
 
     public int getPaymentId() {

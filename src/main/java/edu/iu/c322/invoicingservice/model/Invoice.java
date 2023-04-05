@@ -15,10 +15,10 @@ public class Invoice {
     @NotEmpty
     private String orderPlaced;
     private double total;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @Valid
     private InvoiceItem invoiceItem;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @Valid
     private Payment payment;
 

@@ -13,12 +13,12 @@ public class InvoiceItem {
     private int invoiceItemId;
     @NotEmpty
     private String status;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @Valid
     private List<Item> items;
     @NotEmpty
     private String on;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @Valid
     private Address address;
 
