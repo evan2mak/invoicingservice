@@ -1,15 +1,31 @@
 package edu.iu.c322.invoicingservice.model;
 
+import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 
 import java.util.Objects;
 
+@Entity
 public class Payment {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int paymentId;
     @NotEmpty(message = "Payment method cannot be empty.")
     private String method;
     @NotEmpty(message = "Credit card number cannot be empty.")
     private String number;
-    private Address billingAddress;
+    @Valid
+    @OneToOne
+    private BillingAddress billingAddress;
+
+    public int getPaymentId() {
+        return paymentId;
+    }
+
+    public void setPaymentId(int paymentId) {
+        this.paymentId = paymentId;
+    }
 
     public String getMethod() {
         return method;
@@ -27,11 +43,11 @@ public class Payment {
         this.number = number;
     }
 
-    public Address getBillingAddress() {
+    public BillingAddress getBillingAddress() {
         return billingAddress;
     }
 
-    public void setBillingAddress(Address billingAddress) {
+    public void setBillingAddress(BillingAddress billingAddress) {
         this.billingAddress = billingAddress;
     }
 

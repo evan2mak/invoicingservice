@@ -1,19 +1,34 @@
 package edu.iu.c322.invoicingservice.model;
+import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 
 import java.util.List;
 import java.util.Objects;
 
+@Entity
 public class InvoiceItem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int invoiceItemId;
     @NotEmpty
     private String status;
+    @OneToMany
     @Valid
     private List<Item> items;
     @NotEmpty
     private String on;
+    @ManyToOne
     @Valid
     private Address address;
+
+    public int getInvoiceItemId() {
+        return invoiceItemId;
+    }
+
+    public void setInvoiceItemId(int invoiceItemId) {
+        this.invoiceItemId = invoiceItemId;
+    }
 
     public String getStatus() {
         return status;
