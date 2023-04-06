@@ -8,7 +8,7 @@ import java.util.Objects;
 @Entity
 public class BillingAddress {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int billingAddressId;
 
     @NotEmpty(message = "State cannot be empty.")

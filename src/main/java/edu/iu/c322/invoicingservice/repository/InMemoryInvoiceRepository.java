@@ -1,7 +1,7 @@
 package edu.iu.c322.invoicingservice.repository;
 
 import edu.iu.c322.invoicingservice.model.Invoice;
-import edu.iu.c322.invoicingservice.model.Item;
+import edu.iu.c322.invoicingservice.model.ItemInv;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class InMemoryInvoiceRepository {
 
     public void create(Invoice invoice){
         int itemId = 1;
-        for (Item item : invoice.getInvoiceItem().getItems()) {
+        for (ItemInv item : invoice.getInvoiceItem().getItems()) {
             item.setItemId(itemId);
             itemId++;
         }
@@ -26,7 +26,7 @@ public class InMemoryInvoiceRepository {
     public void update(int orderId, int itemId, String status){
         Invoice invoice = getInvoiceById(orderId);
         if (invoice != null) {
-            Item item = invoice.getInvoiceItem().getItems().stream().filter(i -> i.getItemId() == itemId).findFirst().orElse(null);
+            ItemInv item = invoice.getInvoiceItem().getItems().stream().filter(i -> i.getItemId() == itemId).findFirst().orElse(null);
             if (item != null) {
                 item.setStatus(status);
             }

@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int addressId;
     @NotEmpty(message = "State cannot be empty.")
     private String state;

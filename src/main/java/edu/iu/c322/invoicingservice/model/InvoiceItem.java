@@ -9,15 +9,15 @@ import java.util.Objects;
 @Entity
 public class InvoiceItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int invoiceItemId;
     @NotEmpty
     private String status;
     @OneToMany(cascade = CascadeType.ALL)
     @Valid
-    private List<Item> items;
+    private List<ItemInv> items;
     @NotEmpty
-    private String on;
+    private String date;
     @ManyToOne(cascade = CascadeType.ALL)
     @Valid
     private Address address;
@@ -38,20 +38,20 @@ public class InvoiceItem {
         this.status = status;
     }
 
-    public List<Item> getItems() {
+    public List<ItemInv> getItems() {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(List<ItemInv> items) {
         this.items = items;
     }
 
-    public String getOn() {
-        return on;
+    public String getDate() {
+        return date;
     }
 
-    public void setOn(String on) {
-        this.on = on;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public Address getAddress() {
@@ -66,11 +66,11 @@ public class InvoiceItem {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof InvoiceItem that)) return false;
-        return Objects.equals(getStatus(), that.getStatus()) && Objects.equals(getItems(), that.getItems()) && Objects.equals(getOn(), that.getOn()) && Objects.equals(getAddress(), that.getAddress());
+        return getInvoiceItemId() == that.getInvoiceItemId() && Objects.equals(getStatus(), that.getStatus()) && Objects.equals(getItems(), that.getItems()) && Objects.equals(getDate(), that.getDate()) && Objects.equals(getAddress(), that.getAddress());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getStatus(), getItems(), getOn(), getAddress());
+        return Objects.hash(getInvoiceItemId(), getStatus(), getItems(), getDate(), getAddress());
     }
 }

@@ -9,9 +9,9 @@ import jakarta.validation.constraints.NotEmpty;
 import java.util.Objects;
 
 @Entity
-public class Item {
+public class ItemInv {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int itemId;
     @NotEmpty(message = "Item name cannot be empty.")
     private String item;
@@ -53,7 +53,7 @@ public class Item {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Item item1)) return false;
+        if (!(o instanceof ItemInv item1)) return false;
         return getItemId() == item1.getItemId() && Double.compare(item1.getPrice(), getPrice()) == 0 && Objects.equals(getItem(), item1.getItem());
     }
 

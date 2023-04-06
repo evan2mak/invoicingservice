@@ -9,7 +9,7 @@ import java.util.Objects;
 @Entity
 public class Invoice {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int invoiceId;
     private int orderId;
     @NotEmpty

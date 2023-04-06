@@ -1,7 +1,7 @@
 package edu.iu.c322.invoicingservice.controller;
 
 import edu.iu.c322.invoicingservice.model.Invoice;
-import edu.iu.c322.invoicingservice.model.Item;
+import edu.iu.c322.invoicingservice.model.ItemInv;
 import edu.iu.c322.invoicingservice.model.UpdateRequest;
 import edu.iu.c322.invoicingservice.repository.InvoiceRepository;
 import jakarta.validation.Valid;
@@ -33,7 +33,7 @@ public class InvoiceController {
         Invoice invoice = repository.findByOrderId(request.getOrderId());
         if (invoice != null) {
             boolean itemFound = false;
-            for (Item item : invoice.getInvoiceItem().getItems()) {
+            for (ItemInv item : invoice.getInvoiceItem().getItems()) {
                 if (item.getItemId() == request.getItemId()) {
                     item.setStatus(request.getStatus());
                     itemFound = true;

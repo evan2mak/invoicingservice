@@ -9,7 +9,7 @@ import java.util.Objects;
 @Entity
 public class Payment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int paymentId;
     @NotEmpty(message = "Payment method cannot be empty.")
     private String method;
