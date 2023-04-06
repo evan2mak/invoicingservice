@@ -21,7 +21,7 @@ public class InvoiceController {
 
     @GetMapping("/{orderId}")
     public ResponseEntity<?> findByOrderId(@PathVariable int orderId) {
-        Invoice invoice = repository.findByOrderId(orderId);
+        Invoice invoice = repository.findFirstByOrderId(orderId);
         if (invoice == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order with this ID does not exist in the system.");
         }
@@ -30,7 +30,7 @@ public class InvoiceController {
 
     @PutMapping("/{orderId}")
     public void update(@Valid @RequestBody UpdateRequest request) {
-        Invoice invoice = repository.findByOrderId(request.getOrderId());
+        Invoice invoice = repository.findFirstByOrderId(request.getOrderId());
         if (invoice != null) {
             boolean itemFound = false;
             for (ItemInv item : invoice.getInvoiceItem().getItems()) {
